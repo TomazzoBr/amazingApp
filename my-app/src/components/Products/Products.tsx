@@ -1,20 +1,13 @@
 import { Suspense, useEffect, useState } from "react";
+import { ProductsInterface } from "../../interfaces/ProductsInterface";
 
 import Pagination from "./Pagination/Pagination";
-
-interface ProductsInterface {
-  title: string;
-  description: string;
-  price: string;
-  email: string;
-  image: string;
-}
+import SortBar from "../SortBar/SortBar";
 
 export default function Products() {
   const [productsData, setProductsData] = useState<ProductsInterface[]>([]);
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(10);
-  console.log(productsData);
+  const [totalPages, setTotalPages] = useState(1);
 
   const handlePrevPage = (prevPage: number) => {
     setPage((prevPage) => prevPage - 1);
@@ -31,20 +24,29 @@ export default function Products() {
       );
       const result = await response.json();
       setProductsData(result.items);
-      setTotalPages(totalPages);
+      setTotalPages(result.items.length / 5);
     };
     fetchData();
   }, [page, totalPages]);
 
   return (
-    <div className="flex-wrap justify-center">
+    <div className="w-full flex-wrap justify-center">
+      <div className="w-full h-8 flex justify-around items-center  mt-4">
+        <SortBar />
+        <Pagination
+          totalPages={totalPages}
+          currentPage={page}
+          handlePrevPage={handlePrevPage}
+          handleNextPage={handleNextPage}
+        />
+      </div>
       <Suspense fallback={<div>Loading...</div>}>
-        <div className="w-full h-full flex-wrap">
+        <div className="w-full h-full flex-wrap overflow-y-scroll">
           <ul className="w-full h-full flex p-4">
             {productsData ? (
               productsData.map((item, key) => {
                 return (
-                  <li key={key} className="w-1/6 m-2">
+                  <li key={key} className="w-3/6 m-2">
                     <p>{item.title}</p>
                     <img alt={item.title} src={item.image} />
                     <p>{item.description}</p>
@@ -57,14 +59,6 @@ export default function Products() {
               <li>No products available</li>
             )}
           </ul>
-        </div>
-        <div className="mt-4">
-          <Pagination
-            totalPages={totalPages}
-            currentPage={page}
-            handlePrevPage={handlePrevPage}
-            handleNextPage={handleNextPage}
-          />
         </div>
       </Suspense>
     </div>

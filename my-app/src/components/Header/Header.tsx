@@ -11,7 +11,7 @@ export default function Header() {
   };
 
   return (
-    <div className="flex w-full ml-4 mt-2 items-center">
+    <div className="flex w-full ml-4 justify-between items-center">
       <div>
         <img alt="Wallapop logo" src={Wallapop} />
       </div>
@@ -25,6 +25,9 @@ export default function Header() {
           />
         </form>
       </div>
+      <button className="mr-4">
+        <p>Favourites</p>
+      </button>
     </div>
   );
 }
