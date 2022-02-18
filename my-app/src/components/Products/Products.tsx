@@ -1,13 +1,16 @@
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ProductsInterface } from "../../interfaces/ProductsInterface";
 
+import { Star, StarFill } from "react-bootstrap-icons";
 import Pagination from "./Pagination/Pagination";
 import SortBar from "../SortBar/SortBar";
 
 export default function Products() {
+  const itemsPerPage = 5;
   const [productsData, setProductsData] = useState<ProductsInterface[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [favButton, setFavButton] = useState(false);
 
   const handlePrevPage = (prevPage: number) => {
     setPage((prevPage) => prevPage - 1);
@@ -15,6 +18,12 @@ export default function Products() {
 
   const handleNextPage = (nextPage: number) => {
     setPage((nextPage) => nextPage + 1);
+  };
+
+  const getPaginatedData = () => {
+    const startIndex = page * itemsPerPage - itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return productsData.slice(startIndex, endIndex);
   };
 
   useEffect(() => {
@@ -27,7 +36,7 @@ export default function Products() {
       setTotalPages(result.items.length / 5);
     };
     fetchData();
-  }, [page, totalPages]);
+  }, [page]);
 
   return (
     <div className="w-full flex-wrap justify-center">
@@ -40,27 +49,33 @@ export default function Products() {
           handleNextPage={handleNextPage}
         />
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <div className="w-full h-full flex-wrap overflow-y-scroll">
-          <ul className="w-full h-full flex p-4">
-            {productsData ? (
-              productsData.map((item, key) => {
-                return (
-                  <li key={key} className="w-3/6 m-2">
-                    <p>{item.title}</p>
-                    <img alt={item.title} src={item.image} />
-                    <p>{item.description}</p>
-                    <p>€ {item.price}</p>
-                    <p>{item.email}</p>
-                  </li>
-                );
-              })
-            ) : (
-              <li>No products available</li>
-            )}
-          </ul>
-        </div>
-      </Suspense>
+      <div className="w-full flex-wrap">
+        <ul className="w-screen flex p-4 overflow-y-scroll">
+          {productsData ? (
+            getPaginatedData().map((item, key) => {
+              return (
+                <li key={key} className="w-1/6 m-2">
+                  <p>{item.title}</p>
+                  <div className="relative">
+                    <button
+                      className="absolute right-0 bg-white"
+                      onClick={() => setFavButton(!favButton)}
+                    >
+                      {favButton ? <StarFill /> : <Star />}
+                    </button>
+                    <img className="block" alt={item.title} src={item.image} />
+                  </div>
+                  <p>{item.description}</p>
+                  <p>€ {item.price}</p>
+                  <p>{item.email}</p>
+                </li>
+              );
+            })
+          ) : (
+            <li>No products available</li>
+          )}
+        </ul>
+      </div>
     </div>
   );
 }

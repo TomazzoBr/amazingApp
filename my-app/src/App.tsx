@@ -8,7 +8,7 @@ function App() {
       <div className="flex w-full h-14">
         <Header />
       </div>
-      <div className="flex w-full h-5/6 overflow-y-scroll bg-backblue">
+      <div className="flex w-full h-5/6 bg-backblue">
         <Products />
       </div>
     </div>
