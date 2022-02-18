@@ -1,4 +1,4 @@
-import { useState, Key } from "react";
+import { useState, useEffect, Key } from "react";
 
 import { Star, StarFill } from "react-bootstrap-icons";
 
@@ -13,8 +13,19 @@ export default function ProductItem({ getPaginatedData, productsData }: Props) {
   const [favList, setFavList] = useState<ProductsInterface[]>([]);
 
   function handleFavList(item: ProductsInterface) {
-    if (favList.includes(item)) {
-      setFavList(favList.filter((obj) => obj !== item));
+    console.log(
+      favList.some((obj) => {
+        return JSON.stringify(obj) === JSON.stringify(item);
+      })
+    );
+    if (
+      favList.some((obj) => {
+        return JSON.stringify(obj) === JSON.stringify(item);
+      })
+    ) {
+      setFavList(
+        favList.filter((obj) => JSON.stringify(obj) !== JSON.stringify(item))
+      );
     } else {
       setFavList(favList.concat(item));
     }
@@ -33,9 +44,19 @@ export default function ProductItem({ getPaginatedData, productsData }: Props) {
                   className="absolute right-0 bg-white"
                   onClick={() => handleFavList(item)}
                 >
-                  {favList.includes(item) ? <StarFill /> : <Star />}
+                  {favList.some((obj) => {
+                    return JSON.stringify(obj) === JSON.stringify(item);
+                  }) ? (
+                    <StarFill />
+                  ) : (
+                    <Star />
+                  )}
                 </button>
-                <img className="block" alt={item.title} src={item.image} />
+                <img
+                  className="max-h-60 block"
+                  alt={item.title}
+                  src={item.image}
+                />
               </div>
               <p>{item.description}</p>
               <p>€ {item.price}</p>
