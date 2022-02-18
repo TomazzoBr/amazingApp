@@ -52,7 +52,6 @@ export default function Products() {
         <ProductItem
           getPaginatedData={getPaginatedData}
           productsData={productsData}
-          setTotalPages={setTotalPages}
         />
       </div>
     </div>
