@@ -13,24 +13,26 @@ export default function Pagination({
   handlePrevPage,
 }: Props) {
   return (
-    <div className="pagination-button-wrapper">
+    <div className="flex">
       <button
-        className="pagination-button"
+        className=""
         onClick={() => handlePrevPage(currentPage)}
         disabled={currentPage === 1}
       >
         &larr;
       </button>
 
-      <span className="pagination-page-info">
+      <span className="">
         Page {currentPage} of {totalPages}
       </span>
 
       <button
-        className="pagination-button"
+        className="text-black"
         onClick={() => handleNextPage(currentPage)}
         disabled={currentPage === totalPages}
-      ></button>
+      >
+        &rarr;
+      </button>
     </div>
   );
 }

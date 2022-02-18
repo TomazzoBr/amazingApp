@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import Pagination from "./Pagination/Pagination";
 
@@ -25,36 +25,48 @@ export default function Products() {
   };
 
   useEffect(() => {
-    fetch(
-      "https://frontend-tech-test-data.s3.eu-west-1.amazonaws.com/items.json"
-    ).then((response) => response.json().then((json) => setProductsData(json)));
-  }, []);
+    const fetchData = async () => {
+      const response = await fetch(
+        `https://frontend-tech-test-data.s3.eu-west-1.amazonaws.com/items.json`
+      );
+      const result = await response.json();
+      setProductsData(result.items);
+      setTotalPages(totalPages);
+    };
+    fetchData();
+  }, [page, totalPages]);
 
   return (
-    <div className="w-full h-full flex-wrap">
-      <ul className="w-full h-full flex p-4">
-        {productsData ? (
-          productsData.map((item, key) => {
-            return (
-              <li key={key} className="w-1/6 m-2">
-                <p>{item.title}</p>
-                <img alt={item.title} src={item.image} />
-                <p>{item.description}</p>
-                <p>€ {item.price}</p>
-                <p>{item.email}</p>
-              </li>
-            );
-          })
-        ) : (
-          <li>No products available</li>
-        )}
-      </ul>
-      <Pagination
-        totalPages={totalPages}
-        currentPage={page}
-        handlePrevPage={handlePrevPage}
-        handleNextPage={handleNextPage}
-      />
+    <div className="flex-wrap justify-center">
+      <Suspense fallback={<div>Loading...</div>}>
+        <div className="w-full h-full flex-wrap">
+          <ul className="w-full h-full flex p-4">
+            {productsData ? (
+              productsData.map((item, key) => {
+                return (
+                  <li key={key} className="w-1/6 m-2">
+                    <p>{item.title}</p>
+                    <img alt={item.title} src={item.image} />
+                    <p>{item.description}</p>
+                    <p>€ {item.price}</p>
+                    <p>{item.email}</p>
+                  </li>
+                );
+              })
+            ) : (
+              <li>No products available</li>
+            )}
+          </ul>
+        </div>
+        <div className="mt-4">
+          <Pagination
+            totalPages={totalPages}
+            currentPage={page}
+            handlePrevPage={handlePrevPage}
+            handleNextPage={handleNextPage}
+          />
+        </div>
+      </Suspense>
     </div>
   );
 }
