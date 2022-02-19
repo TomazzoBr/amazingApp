@@ -1,4 +1,4 @@
-import { useState, useEffect, Key } from "react";
+import { useState, Key } from "react";
 
 import { Star, StarFill } from "react-bootstrap-icons";
 
@@ -13,11 +13,6 @@ export default function ProductItem({ getPaginatedData, productsData }: Props) {
   const [favList, setFavList] = useState<ProductsInterface[]>([]);
 
   function handleFavList(item: ProductsInterface) {
-    console.log(
-      favList.some((obj) => {
-        return JSON.stringify(obj) === JSON.stringify(item);
-      })
-    );
     if (
       favList.some((obj) => {
         return JSON.stringify(obj) === JSON.stringify(item);
