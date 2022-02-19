@@ -1,5 +1,4 @@
 import { useState, Key } from "react";
-
 import { Star, StarFill } from "react-bootstrap-icons";
 
 import { ProductsInterface } from "../../../interfaces/ProductsInterface";

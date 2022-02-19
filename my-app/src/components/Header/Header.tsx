@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import Wallapop from "../../assets/ic-logo-web.svg";
+import store from "../../store/store";
 
 export default function Header() {
   const [searchBar, setSearchBar] = useState("");
+  const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent): void => {
     const target = event.target as HTMLInputElement;
     setSearchBar(target.value);
+  };
+
+  const toggleModal = (flag: boolean) => {
+    dispatch({ type: "header/toggleFavouriteModal", flag: flag });
   };
 
   return (
@@ -25,8 +32,13 @@ export default function Header() {
           />
         </form>
       </div>
-      <button className="mr-4">
-        <p>Favourites</p>
+      <button
+        className="mr-4"
+        onClick={() =>
+          toggleModal(!store.getState().toggleFavouriteModalReducer.flag)
+        }
+      >
+        Favourites
       </button>
     </div>
   );

@@ -4,6 +4,7 @@ import { ProductsInterface } from "../../interfaces/ProductsInterface";
 import ProductItem from "./ProductItem.tsx/ProductItem";
 import Pagination from "./Pagination/Pagination";
 import SortBar from "../SortBar/SortBar";
+import store from "../../store/store";
 
 export default function Products() {
   const [productsData, setProductsData] = useState<ProductsInterface[]>([]);
@@ -35,7 +36,45 @@ export default function Products() {
       setTotalPages(result.items.length / 5);
     };
     fetchData();
-  }, [page]);
+  });
+
+  const toggleFilterValue = store.getState().toggleFilterReducer.value;
+
+  if (toggleFilterValue === "title") {
+    productsData.sort((a, b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
+  } else if (toggleFilterValue === "description") {
+    productsData.sort((a, b) => {
+      if (a.description < b.description) {
+        return -1;
+      }
+      if (a.description > b.description) {
+        return 1;
+      }
+      return 0;
+    });
+  } else if (toggleFilterValue === "price") {
+    productsData.sort((a, b): number => {
+      return a.price - b.price;
+    });
+  } else if (toggleFilterValue === "email") {
+    productsData.sort((a, b) => {
+      if (a.email < b.email) {
+        return -1;
+      }
+      if (a.email > b.email) {
+        return 1;
+      }
+      return 0;
+    });
+  }
 
   return (
     <div className="w-full flex-wrap justify-center">
