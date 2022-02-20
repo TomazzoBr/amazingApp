@@ -5,8 +5,9 @@ import ProductItem from "./ProductItem.tsx/ProductItem";
 import Pagination from "./Pagination/Pagination";
 import SortBar from "../SortBar/SortBar";
 import store from "../../store/store";
+import FavouriteModal from "./FavouritesModal/FavouriteModal";
 
-export default function Products() {
+export default function ProductsList() {
   const [productsData, setProductsData] = useState<ProductsInterface[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -87,11 +88,16 @@ export default function Products() {
           handleNextPage={handleNextPage}
         />
       </div>
-      <div className="w-full flex-wrap">
-        <ProductItem
-          getPaginatedData={getPaginatedData}
-          productsData={productsData}
-        />
+      <div className="relative w-full flex flex-wrap justify-center">
+        {store.getState().toggleFavouriteModalReducer.flag ? (
+          <FavouriteModal />
+        ) : null}
+        <div>
+          <ProductItem
+            getPaginatedData={getPaginatedData}
+            productsData={productsData}
+          />
+        </div>
       </div>
     </div>
   );

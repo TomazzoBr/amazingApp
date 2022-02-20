@@ -30,7 +30,7 @@ export default function ProductItem({ getPaginatedData, productsData }: Props) {
       {productsData ? (
         getPaginatedData().map((item: ProductsInterface, key: Key) => {
           return (
-            <li key={key} className="w-1/6 m-2">
+            <li key={key} className="w-1/6 m-2 z-0">
               <p>{item.title}</p>
               <div className="relative">
                 <button
@@ -47,7 +47,7 @@ export default function ProductItem({ getPaginatedData, productsData }: Props) {
                   )}
                 </button>
                 <img
-                  className="max-h-60 block"
+                  className="max-h-60 block z-0"
                   alt={item.title}
                   src={item.image}
                 />

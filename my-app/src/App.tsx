@@ -1,13 +1,9 @@
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
 import Header from "./components/Header/Header";
-import Products from "./components/ProductsList/ProductsList";
+import ProductsList from "./components/ProductsList/ProductsList";
 import FavouriteModal from "./components/ProductsList/FavouritesModal/FavouriteModal";
-import store from "./store/store";
-import { connect, MapStateToProps } from "react-redux";
-import toggleFilterAction from "./store/actions/toggleFilterAction";
-import toggleFavouriteModalAction from "./store/actions/toggleFavouriteModal";
-import "./App.css";
-import { Dispatch } from "react";
-import { AnyAction, bindActionCreators } from "redux";
 
 const actions = {
   toggleFilter: (): string => "none",
@@ -19,12 +15,12 @@ interface Props extends StateProps, DispatchProps {}
 function App(props: Props) {
   return (
     <div className="w-screen h-screen">
-      <div className="flex w-full h-14">
+      <div className="w-full flex h-14">
         <Header />
       </div>
-      <div className="flex w-full h-5/6 bg-backblue">
-        <Products />
-        {props.flag ? <FavouriteModal /> : null}
+      <div className="w-full flex justify-center items-center h-5/6 bg-backblue">
+        <ProductsList />
+        {/* {props.flag ? <FavouriteModal /> : null} */}
       </div>
     </div>
   );
