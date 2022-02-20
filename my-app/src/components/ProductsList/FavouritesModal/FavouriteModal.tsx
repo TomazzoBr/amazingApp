@@ -7,15 +7,26 @@ interface Props {
 }
 
 export default function FavouriteModal({ favListModal }: Props) {
-  console.log(favListModal);
   const favList = favListModal;
   return (
-    <div className="fixed w-3/4 h-3/4 flex items-center justify-center bg-slate-300 z-50">
-      <ul>
+    <div className="fixed w-5/6 h-3/4 flex flex-col items-center justify-center bg-slate-300 z-50">
+      <div className="flex flex-col items-center p-4">
+        <p>
+          <strong>Your favourite products</strong>
+        </p>
+        <form>
+          <label className="mr-4">Search</label>
+          <input type="text"></input>
+        </form>
+      </div>
+      <ul className="w-full h-full flex flex-col items-center overflow-scroll mb-5">
         {Object.keys(favList).length > 0 ? (
           favList.map((item: ProductsInterface, key: Key) => {
             return (
-              <li key={key}>
+              <li
+                key={key}
+                className="flex flex-col w-1/2 h-1/2 items-center m-5"
+              >
                 <p>{item.title}</p>
                 <div className="relative">
                   <button

@@ -7,11 +7,20 @@ import SortBar from "../SortBar/SortBar";
 import store from "../../store/store";
 import FavouriteModal from "./FavouritesModal/FavouriteModal";
 
-export default function ProductsList() {
+interface Props {
+  products: ProductsInterface[];
+}
+
+export default function ProductsList({ products }: Props) {
   const [productsData, setProductsData] = useState<ProductsInterface[]>([]);
   const [favListModal, setFavListModal] = useState<ProductsInterface[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    setProductsData(products);
+    setTotalPages(products.length / 5);
+  }, [products]);
 
   const handlePrevPage = (prevPage: number) => {
     setPage((prevPage) => prevPage - 1);
@@ -27,18 +36,6 @@ export default function ProductsList() {
     const endIndex = startIndex + itemsPerPage;
     return productsData.slice(startIndex, endIndex);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `https://frontend-tech-test-data.s3.eu-west-1.amazonaws.com/items.json`
-      );
-      const result = await response.json();
-      setProductsData(result.items);
-      setTotalPages(result.items.length / 5);
-    };
-    fetchData();
-  });
 
   const toggleFilterValue = store.getState().toggleFilterReducer.value;
 
