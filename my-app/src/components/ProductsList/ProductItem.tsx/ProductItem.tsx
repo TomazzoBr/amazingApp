@@ -6,9 +6,14 @@ import { ProductsInterface } from "../../../interfaces/ProductsInterface";
 interface Props {
   getPaginatedData: Function;
   productsData: ProductsInterface[];
+  setFavListModal: React.Dispatch<React.SetStateAction<ProductsInterface[]>>;
 }
 
-export default function ProductItem({ getPaginatedData, productsData }: Props) {
+export default function ProductItem({
+  getPaginatedData,
+  productsData,
+  setFavListModal,
+}: Props) {
   const [favList, setFavList] = useState<ProductsInterface[]>([]);
 
   function handleFavList(item: ProductsInterface) {
@@ -20,8 +25,12 @@ export default function ProductItem({ getPaginatedData, productsData }: Props) {
       setFavList(
         favList.filter((obj) => JSON.stringify(obj) !== JSON.stringify(item))
       );
+      setFavListModal(
+        favList.filter((obj) => JSON.stringify(obj) !== JSON.stringify(item))
+      );
     } else {
       setFavList(favList.concat(item));
+      setFavListModal(favList.concat(item));
     }
   }
 

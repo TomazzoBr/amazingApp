@@ -9,6 +9,7 @@ import FavouriteModal from "./FavouritesModal/FavouriteModal";
 
 export default function ProductsList() {
   const [productsData, setProductsData] = useState<ProductsInterface[]>([]);
+  const [favListModal, setFavListModal] = useState<ProductsInterface[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -90,12 +91,13 @@ export default function ProductsList() {
       </div>
       <div className="relative w-full flex flex-wrap justify-center">
         {store.getState().toggleFavouriteModalReducer.flag ? (
-          <FavouriteModal />
+          <FavouriteModal favListModal={favListModal} />
         ) : null}
         <div>
           <ProductItem
             getPaginatedData={getPaginatedData}
             productsData={productsData}
+            setFavListModal={setFavListModal}
           />
         </div>
       </div>
