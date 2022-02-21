@@ -8,19 +8,19 @@ import store from "../../store/store";
 import FavouriteModal from "./FavouritesModal/FavouriteModal";
 
 interface Props {
-  products: ProductsInterface[];
+  filteredProd: ProductsInterface[];
 }
 
-export default function ProductsList({ products }: Props) {
+export default function ProductsList({ filteredProd }: Props) {
   const [productsData, setProductsData] = useState<ProductsInterface[]>([]);
   const [favListModal, setFavListModal] = useState<ProductsInterface[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
-    setProductsData(products);
-    setTotalPages(products.length / 5);
-  }, [products]);
+    setProductsData(filteredProd);
+    setTotalPages(filteredProd.length / 5);
+  }, [filteredProd]);
 
   const handlePrevPage = (prevPage: number) => {
     setPage((prevPage) => prevPage - 1);

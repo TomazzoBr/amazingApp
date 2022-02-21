@@ -1,16 +1,22 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 
+import { ProductsInterface } from "../../interfaces/ProductsInterface";
 import SearchBar from "./SearchBar/SearchBar";
 import Wallapop from "../../assets/ic-logo-web.svg";
 import store from "../../store/store";
 
 interface HeaderProps {
   setSearch: React.Dispatch<React.SetStateAction<string>>;
-  handleSearch: (event: any) => void;
+  setFilteredProd: React.Dispatch<React.SetStateAction<ProductsInterface[]>>;
+  products: ProductsInterface[];
 }
 
-export default function Header({ setSearch, handleSearch }: HeaderProps) {
+export default function Header({
+  setSearch,
+  setFilteredProd,
+  products,
+}: HeaderProps) {
   const dispatch = useDispatch();
 
   const toggleModal = (flag: boolean) => {
@@ -22,7 +28,11 @@ export default function Header({ setSearch, handleSearch }: HeaderProps) {
       <div className="p-2">
         <img alt="Wallapop logo" src={Wallapop} />
       </div>
-      <SearchBar setSearch={setSearch} handleSearch={handleSearch} />
+      <SearchBar
+        setSearch={setSearch}
+        setFilteredProd={setFilteredProd}
+        products={products}
+      />
       <button
         className="flex h-3/4 items-center mr-4 bg-favback rounded-md p-2 opacity-90 hover:opacity-100 hover:shadow-md"
         onClick={() =>
