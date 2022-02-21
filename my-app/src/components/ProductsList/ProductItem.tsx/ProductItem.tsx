@@ -35,35 +35,52 @@ export default function ProductItem({
   }
 
   return (
-    <ul className="w-screen flex p-4 overflow-y-scroll">
+    <ul className="w-screen flex p-4 justify-center bg-backblue rounded-md">
       {productsData ? (
         getPaginatedData().map((item: ProductsInterface, key: Key) => {
           return (
-            <li key={key} className="w-1/6 m-2 z-0">
-              <p>{item.title}</p>
-              <div className="relative">
+            <li
+              key={key}
+              className="w-1/6 h-full flex flex-col items-center m-2 z-0 bg-white p-2 rounded-md"
+            >
+              <p className="">
+                {item.title.length > 19
+                  ? `${item.title.substring(0, 19)}...`
+                  : item.title}
+              </p>
+              <div className="relative flex justify-center h-2/5">
                 <button
                   type="button"
-                  className="absolute right-0 bg-white"
+                  className="absolute mt-2 bg-favback rounded-lg"
                   onClick={() => handleFavList(item)}
                 >
                   {favList.some((obj) => {
                     return JSON.stringify(obj) === JSON.stringify(item);
                   }) ? (
-                    <StarFill />
+                    <StarFill size={20} />
                   ) : (
-                    <Star />
+                    <Star size={20} />
                   )}
                 </button>
-                <img
-                  className="max-h-60 block z-0"
-                  alt={item.title}
-                  src={item.image}
-                />
+                <div className="w-full h-full mt-1 flex items-center">
+                  <img
+                    className="max-h-40 block z-0 rounded"
+                    alt={item.title}
+                    src={item.image}
+                  />
+                </div>
               </div>
-              <p>{item.description}</p>
-              <p>€ {item.price}</p>
-              <p>{item.email}</p>
+              <div className="relative w-full h-3/5 flex flex-col justify-evenly items-center">
+                <p className="text-textGrey">
+                  {item.description.length > 150
+                    ? `${item.description.substring(0, 150)}...`
+                    : item.description}
+                </p>
+                <p>
+                  <strong>€ {item.price}</strong>
+                </p>
+                <p className="break-all text-textGrey">{item.email}</p>
+              </div>
             </li>
           );
         })

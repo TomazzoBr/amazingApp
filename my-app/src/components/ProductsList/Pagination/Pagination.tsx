@@ -13,21 +13,21 @@ export default function Pagination({
   handlePrevPage,
 }: Props) {
   return (
-    <div className="flex">
+    <div className="flex items-center">
       <button
-        className=""
+        className="bg-white mr-2 rounded-xl p-1 shadow-md hover:shadow-none"
         onClick={() => handlePrevPage(currentPage)}
         disabled={currentPage === 1}
       >
         &larr;
       </button>
 
-      <span className="">
+      <span className="bg-white rounded-md p-1 shadow-md">
         Page {currentPage} of {totalPages}
       </span>
 
       <button
-        className="text-black"
+        className="bg-white ml-2 rounded-xl p-1 shadow-md hover:shadow-none"
         onClick={() => handleNextPage(currentPage)}
         disabled={currentPage === totalPages}
       >

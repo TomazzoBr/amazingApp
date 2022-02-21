@@ -76,8 +76,8 @@ export default function ProductsList({ products }: Props) {
   }
 
   return (
-    <div className="w-full flex-wrap justify-center">
-      <div className="w-full h-8 flex justify-around items-center  mt-4">
+    <div className="w-full h-full flex flex-wrap justify-center">
+      <div className="w-3/4 h-12 flex justify-around items-center bg-backgreen mt-2 rounded-md">
         <SortBar />
         <Pagination
           totalPages={totalPages}
@@ -86,11 +86,11 @@ export default function ProductsList({ products }: Props) {
           handleNextPage={handleNextPage}
         />
       </div>
-      <div className="relative w-full flex flex-wrap justify-center">
+      <div className="relative w-full h-full flex flex-wrap justify-center">
         {store.getState().toggleFavouriteModalReducer.flag ? (
           <FavouriteModal favListModal={favListModal} />
         ) : null}
-        <div>
+        <div className="flex w-full h-full p-3">
           <ProductItem
             getPaginatedData={getPaginatedData}
             productsData={productsData}

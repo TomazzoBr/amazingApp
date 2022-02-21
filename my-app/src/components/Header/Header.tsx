@@ -5,7 +5,12 @@ import SearchBar from "./SearchBar/SearchBar";
 import Wallapop from "../../assets/ic-logo-web.svg";
 import store from "../../store/store";
 
-export default function Header() {
+interface HeaderProps {
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+  handleSearch: (event: any) => void;
+}
+
+export default function Header({ setSearch, handleSearch }: HeaderProps) {
   const dispatch = useDispatch();
 
   const toggleModal = (flag: boolean) => {
@@ -13,13 +18,13 @@ export default function Header() {
   };
 
   return (
-    <div className="flex w-full ml-4 justify-between items-center">
-      <div>
+    <div className="flex w-full h-full justify-between items-center bg-backgreen rounded-md">
+      <div className="p-2">
         <img alt="Wallapop logo" src={Wallapop} />
       </div>
-      <SearchBar />
+      <SearchBar setSearch={setSearch} handleSearch={handleSearch} />
       <button
-        className="mr-4"
+        className="flex h-3/4 items-center mr-4 bg-favback rounded-md p-2 opacity-90 hover:opacity-100 hover:shadow-md"
         onClick={() =>
           toggleModal(!store.getState().toggleFavouriteModalReducer.flag)
         }
