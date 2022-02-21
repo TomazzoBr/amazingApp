@@ -7,16 +7,11 @@ import Wallapop from "../../assets/ic-logo-web.svg";
 import store from "../../store/store";
 
 interface HeaderProps {
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
   setFilteredProd: React.Dispatch<React.SetStateAction<ProductsInterface[]>>;
   products: ProductsInterface[];
 }
 
-export default function Header({
-  setSearch,
-  setFilteredProd,
-  products,
-}: HeaderProps) {
+export default function Header({ setFilteredProd, products }: HeaderProps) {
   const dispatch = useDispatch();
 
   const toggleModal = (flag: boolean) => {
@@ -28,11 +23,7 @@ export default function Header({
       <div className="p-2">
         <img alt="Wallapop logo" src={Wallapop} />
       </div>
-      <SearchBar
-        setSearch={setSearch}
-        setFilteredProd={setFilteredProd}
-        products={products}
-      />
+      <SearchBar setFilteredProd={setFilteredProd} products={products} />
       <button
         className="flex h-3/4 items-center mr-4 bg-favback rounded-md p-2 opacity-90 hover:opacity-100 hover:shadow-md"
         onClick={() =>

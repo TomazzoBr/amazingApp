@@ -19,7 +19,7 @@ export default function ProductsList({ filteredProd }: Props) {
 
   useEffect(() => {
     setProductsData(filteredProd);
-    setTotalPages(filteredProd.length / 5);
+    setTotalPages(Math.ceil(filteredProd.length / 5));
   }, [filteredProd]);
 
   const handlePrevPage = (prevPage: number) => {
@@ -88,7 +88,10 @@ export default function ProductsList({ filteredProd }: Props) {
       </div>
       <div className="relative w-full h-full flex flex-wrap justify-center">
         {store.getState().toggleFavouriteModalReducer.flag ? (
-          <FavouriteModal favListModal={favListModal} />
+          <FavouriteModal
+            favListModal={favListModal}
+            setFavListModal={setFavListModal}
+          />
         ) : null}
         <div className="flex w-full h-full p-3">
           <ProductItem

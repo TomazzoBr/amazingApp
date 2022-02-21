@@ -5,8 +5,8 @@ import { ProductsInterface } from "./interfaces/ProductsInterface";
 
 function App() {
   const [products, setProducts] = useState<ProductsInterface[]>([]);
-  const [search, setSearch] = useState("");
-  const [filteredProd, setFilteredProd] = useState(products);
+  const [filteredProd, setFilteredProd] = useState<ProductsInterface[]>([]);
+  // console.log(filteredProd);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,14 +22,12 @@ function App() {
   return (
     <div className="w-screen h-screen">
       <div className="w-full flex h-14 p-1">
-        <Header
-          setSearch={setSearch}
-          setFilteredProd={setFilteredProd}
-          products={products}
-        />
+        <Header setFilteredProd={setFilteredProd} products={products} />
       </div>
       <div className="w-full justify-center items-center h-5/6">
-        <ProductsList filteredProd={filteredProd} />
+        <ProductsList
+          filteredProd={filteredProd.length ? filteredProd : products}
+        />
       </div>
     </div>
   );

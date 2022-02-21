@@ -1,22 +1,20 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { ProductsInterface } from "../../../interfaces/ProductsInterface";
 
 interface SearchBarProps {
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
   setFilteredProd: React.Dispatch<React.SetStateAction<ProductsInterface[]>>;
   products: ProductsInterface[];
 }
 
 export default function SearchBar({
-  setSearch,
   setFilteredProd,
   products,
 }: SearchBarProps) {
   const [searchBar, setSearchBar] = useState("");
 
-  const handleSearch = (event: any) => {
-    const value = event.target.value.toLowerCase();
-    console.log(value);
+  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+    const target = event.target as HTMLInputElement;
+    const value = target.value.toLowerCase();
     const result = products.filter((product) => {
       if (
         product.title.toLowerCase().includes(value) ||
@@ -29,12 +27,15 @@ export default function SearchBar({
         return null;
       }
     });
-    setFilteredProd(result);
+    if (result.length > 0) {
+      setFilteredProd(result);
+    } else {
+      setFilteredProd([]);
+    }
   };
 
   const handleChange = (event: React.ChangeEvent): void => {
     const target = event.target as HTMLInputElement;
-    setSearch(target.value);
     setSearchBar(target.value);
   };
 

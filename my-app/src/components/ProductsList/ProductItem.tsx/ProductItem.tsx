@@ -36,19 +36,19 @@ export default function ProductItem({
 
   return (
     <ul className="w-screen flex p-4 justify-center bg-backblue rounded-md">
-      {productsData ? (
+      {productsData.length > 0 ? (
         getPaginatedData().map((item: ProductsInterface, key: Key) => {
           return (
             <li
               key={key}
               className="w-1/6 h-full flex flex-col items-center m-2 z-0 bg-white p-2 rounded-md"
             >
-              <p className="">
+              <p>
                 {item.title.length > 19
                   ? `${item.title.substring(0, 19)}...`
                   : item.title}
               </p>
-              <div className="relative flex justify-center h-2/5">
+              <div className="relative h-2/5 flex justify-center">
                 <button
                   type="button"
                   className="absolute mt-2 bg-favback rounded-lg"
@@ -85,7 +85,7 @@ export default function ProductItem({
           );
         })
       ) : (
-        <li>No products available</li>
+        <li className="flex items-center">No products available</li>
       )}
     </ul>
   );
