@@ -9,7 +9,8 @@ Amazing app for Wallapop Frontend Test 💻
 <p align="center">
  - I've been working with Typescript in my last projects and I've been enjoying to work with and to learn more and more, to keep working on my skills was one of the reasons to choose it for the test.    
  </p>
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+<!-- ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) -->
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
 <p align="center">
 I have more experience with React, I've worked with Angular already but I wouldn’t feel that comfortable working with it, it'd have slowed me down and that's not something you want for a week test.
  </p>
