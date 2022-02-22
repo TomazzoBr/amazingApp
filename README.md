@@ -6,7 +6,9 @@ Amazing app for Wallapop Frontend Test 💻
 
 ### ⭐️ Tech Stack ⭐️
 
+<p align="center">
 <img align="center" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+</p>
 <p align="center">
  - I've been working with Typescript in my last projects and I've been enjoying to work with and to learn more and more, to keep working on my skills was one of the reasons to choose it for the test.    
 </p>
