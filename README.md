@@ -3,7 +3,7 @@ Amazing app for Wallapop Frontend Test 💻
 
 ## Description
 - Hello Wallapop Team! I've been developing this test for the past week and it's been a nice challenge and as always a good way to keep learning and developing my skills.
-- 
+
 <h4 align="center">
 ⭐️ Tech Stack ⭐️
 </h4>
