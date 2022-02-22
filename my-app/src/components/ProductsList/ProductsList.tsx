@@ -9,24 +9,26 @@ import FavouriteModal from "./FavouritesModal/FavouriteModal";
 
 interface Props {
   filteredProd: ProductsInterface[];
+  products: ProductsInterface[];
 }
 
-export default function ProductsList({ filteredProd }: Props) {
+export default function ProductsList({ filteredProd, products }: Props) {
   const [productsData, setProductsData] = useState<ProductsInterface[]>([]);
   const [favListModal, setFavListModal] = useState<ProductsInterface[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  console.log(productsData);
 
   useEffect(() => {
     setProductsData(filteredProd);
     setTotalPages(Math.ceil(filteredProd.length / 5));
-  }, [filteredProd]);
+  }, [filteredProd, products]);
 
-  const handlePrevPage = (prevPage: number) => {
+  const handlePrevPage = () => {
     setPage((prevPage) => prevPage - 1);
   };
 
-  const handleNextPage = (nextPage: number) => {
+  const handleNextPage = () => {
     setPage((nextPage) => nextPage + 1);
   };
 

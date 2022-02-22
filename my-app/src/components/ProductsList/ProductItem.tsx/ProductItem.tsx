@@ -85,7 +85,9 @@ export default function ProductItem({
           );
         })
       ) : (
-        <li className="flex items-center">No products available</li>
+        <li className="flex items-center">
+          <strong>No products available :(</strong>
+        </li>
       )}
     </ul>
   );

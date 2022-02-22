@@ -1,4 +1,4 @@
-import React, { FormEvent, Key } from "react";
+import React, { FormEvent, Key, useState } from "react";
 import { Star, StarFill } from "react-bootstrap-icons";
 import { ProductsInterface } from "../../../interfaces/ProductsInterface";
 
@@ -11,26 +11,31 @@ export default function FavouriteModal({
   favListModal,
   setFavListModal,
 }: Props) {
-  const favList = favListModal;
+  const [favourites, setFavourites] = useState(favListModal);
 
   const handleFavList = (itemToDelete: ProductsInterface) => {
     const updated = favListModal.filter((item) => {
       return item !== itemToDelete;
     });
     setFavListModal(updated);
+    setFavourites(updated);
   };
 
   const handleChange = (event: FormEvent<HTMLFormElement>) => {
     const target = event.target as HTMLInputElement;
     const value = target.value.toLowerCase();
-    const result = favList.filter((product) => {
+    const result = favListModal.filter((product) => {
       if (product.title.toLowerCase().includes(value)) {
         return product;
       } else {
         return null;
       }
     });
-    return result;
+    if (result.length > 0) {
+      setFavourites(result);
+    } else {
+      setFavourites([]);
+    }
   };
 
   return (
@@ -52,12 +57,12 @@ export default function FavouriteModal({
         </form>
       </div>
       <ul className="w-3/4 h-full flex flex-col items-center mb-5 bg-backblue overflow-scroll rounded-lg">
-        {Object.keys(favList).length > 0 ? (
-          favList.map((item: ProductsInterface, key: Key) => {
+        {Object.keys(favourites).length > 0 ? (
+          favourites.map((item: ProductsInterface, key: Key) => {
             return (
               <li
                 key={key}
-                className="w-1/2 h-full flex flex-col items-center m-7 bg-white p-2 rounded-lg"
+                className="w-1/2 h-56 flex flex-col items-center m-7 bg-white p-2 rounded-lg"
               >
                 <div className="flex flex-row justify-between items-center">
                   <p>{item.title}</p>
@@ -66,7 +71,7 @@ export default function FavouriteModal({
                     className="flex ml-2 bg-favback rounded-lg"
                     onClick={() => handleFavList(item)}
                   >
-                    {favList.some((obj) => {
+                    {favourites.some((obj) => {
                       return JSON.stringify(obj) === JSON.stringify(item);
                     }) ? (
                       <StarFill size={20} />

@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import ProductsList from "./components/ProductsList/ProductsList";
 import { ProductsInterface } from "./interfaces/ProductsInterface";
+import { getProducts } from "./services/ApiClient";
 
 function App() {
   const [products, setProducts] = useState<ProductsInterface[]>([]);
   const [filteredProd, setFilteredProd] = useState<ProductsInterface[]>([]);
-  // console.log(filteredProd);
+  const [mount, setMount] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        `https://frontend-tech-test-data.s3.eu-west-1.amazonaws.com/items.json`
-      );
-      const result = await response.json();
-      setProducts(result.items);
-    };
-    fetchData();
+    getProducts().then((products) => {
+      if (!mount) {
+        setProducts(products);
+        setFilteredProd(products);
+        setMount(true);
+      }
+      setProducts(products);
+    });
   });
 
   return (
@@ -25,9 +26,7 @@ function App() {
         <Header setFilteredProd={setFilteredProd} products={products} />
       </div>
       <div className="w-full justify-center items-center h-5/6">
-        <ProductsList
-          filteredProd={filteredProd.length ? filteredProd : products}
-        />
+        <ProductsList filteredProd={filteredProd} products={products} />
       </div>
     </div>
   );

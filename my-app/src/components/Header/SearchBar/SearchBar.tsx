@@ -27,11 +27,7 @@ export default function SearchBar({
         return null;
       }
     });
-    if (result.length > 0) {
-      setFilteredProd(result);
-    } else {
-      setFilteredProd([]);
-    }
+    setFilteredProd(result);
   };
 
   const handleChange = (event: React.ChangeEvent): void => {
