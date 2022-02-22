@@ -3,7 +3,8 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      grey: "#ECEFF1",
+      grey: "#eceff1",
+      lightGrey: "#000000",
       darkGrey: "#d8dbdd",
       textGrey: "#607d8b",
       white: "#ffffff",

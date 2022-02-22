@@ -17,7 +17,6 @@ export default function ProductsList({ filteredProd, products }: Props) {
   const [favListModal, setFavListModal] = useState<ProductsInterface[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  console.log(productsData);
 
   useEffect(() => {
     setProductsData(filteredProd);
@@ -100,6 +99,7 @@ export default function ProductsList({ filteredProd, products }: Props) {
             getPaginatedData={getPaginatedData}
             productsData={productsData}
             setFavListModal={setFavListModal}
+            favListModal={favListModal}
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useState, Key } from "react";
+import { Key } from "react";
 import { Star, StarFill } from "react-bootstrap-icons";
 
 import { ProductsInterface } from "../../../interfaces/ProductsInterface";
@@ -7,30 +7,28 @@ interface Props {
   getPaginatedData: Function;
   productsData: ProductsInterface[];
   setFavListModal: React.Dispatch<React.SetStateAction<ProductsInterface[]>>;
+  favListModal: ProductsInterface[];
 }
 
 export default function ProductItem({
   getPaginatedData,
   productsData,
   setFavListModal,
+  favListModal,
 }: Props) {
-  const [favList, setFavList] = useState<ProductsInterface[]>([]);
-
   function handleFavList(item: ProductsInterface) {
     if (
-      favList.some((obj) => {
+      favListModal.some((obj) => {
         return JSON.stringify(obj) === JSON.stringify(item);
       })
     ) {
-      setFavList(
-        favList.filter((obj) => JSON.stringify(obj) !== JSON.stringify(item))
-      );
       setFavListModal(
-        favList.filter((obj) => JSON.stringify(obj) !== JSON.stringify(item))
+        favListModal.filter(
+          (obj) => JSON.stringify(obj) !== JSON.stringify(item)
+        )
       );
     } else {
-      setFavList(favList.concat(item));
-      setFavListModal(favList.concat(item));
+      setFavListModal(favListModal.concat(item));
     }
   }
 
@@ -44,8 +42,8 @@ export default function ProductItem({
               className="w-1/6 h-full flex flex-col items-center m-2 z-0 bg-white p-2 rounded-md"
             >
               <p>
-                {item.title.length > 19
-                  ? `${item.title.substring(0, 19)}...`
+                {item.title.length > 18
+                  ? `${item.title.substring(0, 18)}...`
                   : item.title}
               </p>
               <div className="relative h-2/5 flex justify-center">
@@ -54,7 +52,7 @@ export default function ProductItem({
                   className="absolute mt-2 bg-favback rounded-lg"
                   onClick={() => handleFavList(item)}
                 >
-                  {favList.some((obj) => {
+                  {favListModal.some((obj) => {
                     return JSON.stringify(obj) === JSON.stringify(item);
                   }) ? (
                     <StarFill size={20} />
