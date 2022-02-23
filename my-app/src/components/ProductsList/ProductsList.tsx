@@ -7,38 +7,21 @@ import SortBar from "./SortBar/SortBar";
 import store from "../../store/store";
 import FavouriteModal from "./FavouritesModal/FavouriteModal";
 
-interface Props {
+interface ProductsListProps {
   filteredProd: ProductsInterface[];
-  products: ProductsInterface[];
 }
 
-export default function ProductsList({ filteredProd, products }: Props) {
+export default function ProductsList({ filteredProd }: ProductsListProps) {
   const [productsData, setProductsData] = useState<ProductsInterface[]>([]);
   const [favListModal, setFavListModal] = useState<ProductsInterface[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const toggleFilterValue = store.getState().toggleFilterReducer.value;
 
   useEffect(() => {
     setProductsData(filteredProd);
     setTotalPages(Math.ceil(filteredProd.length / 5));
-  }, [filteredProd, products]);
-
-  const handlePrevPage = () => {
-    setPage((prevPage) => prevPage - 1);
-  };
-
-  const handleNextPage = () => {
-    setPage((nextPage) => nextPage + 1);
-  };
-
-  const getPaginatedData = () => {
-    const itemsPerPage = 5;
-    const startIndex = page * itemsPerPage - itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return productsData.slice(startIndex, endIndex);
-  };
-
-  const toggleFilterValue = store.getState().toggleFilterReducer.value;
+  }, [filteredProd]);
 
   if (toggleFilterValue === "title") {
     productsData.sort((a, b) => {
@@ -75,6 +58,22 @@ export default function ProductsList({ filteredProd, products }: Props) {
       return 0;
     });
   }
+
+  // functions for pagination
+  const handlePrevPage = () => {
+    setPage((prevPage) => prevPage - 1);
+  };
+
+  const handleNextPage = () => {
+    setPage((nextPage) => nextPage + 1);
+  };
+
+  const getPaginatedData = () => {
+    const itemsPerPage = 5;
+    const startIndex = page * itemsPerPage - itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return productsData.slice(startIndex, endIndex);
+  };
 
   return (
     <div className="w-full h-full flex flex-wrap justify-center">

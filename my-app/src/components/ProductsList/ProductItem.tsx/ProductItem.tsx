@@ -3,7 +3,7 @@ import { Star, StarFill } from "react-bootstrap-icons";
 
 import { ProductsInterface } from "../../../interfaces/ProductsInterface";
 
-interface Props {
+interface ProductItemProps {
   getPaginatedData: Function;
   productsData: ProductsInterface[];
   setFavListModal: React.Dispatch<React.SetStateAction<ProductsInterface[]>>;
@@ -15,7 +15,7 @@ export default function ProductItem({
   productsData,
   setFavListModal,
   favListModal,
-}: Props) {
+}: ProductItemProps) {
   function handleFavList(item: ProductsInterface) {
     if (
       favListModal.some((obj) => {

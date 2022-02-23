@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Star, StarFill } from "react-bootstrap-icons";
 import { ProductsInterface } from "../../../interfaces/ProductsInterface";
 
-interface Props {
+interface FavouriteModalProps {
   favListModal: ProductsInterface[];
   setFavListModal: React.Dispatch<React.SetStateAction<ProductsInterface[]>>;
 }
@@ -11,7 +11,7 @@ interface Props {
 export default function FavouriteModal({
   favListModal,
   setFavListModal,
-}: Props) {
+}: FavouriteModalProps) {
   const [favourites, setFavourites] = useState(favListModal);
   const dispatch = useDispatch();
 

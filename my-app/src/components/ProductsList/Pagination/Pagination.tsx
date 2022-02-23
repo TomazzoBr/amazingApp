@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-interface Props {
+interface PaginationProps {
   currentPage: number;
   totalPages: number;
   handleNextPage: (page: number) => void;
@@ -11,7 +11,7 @@ export default function Pagination({
   totalPages,
   handleNextPage,
   handlePrevPage,
-}: Props) {
+}: PaginationProps) {
   return (
     <div className="flex items-center">
       <button

@@ -26,7 +26,7 @@ function App() {
         <Header setFilteredProd={setFilteredProd} products={products} />
       </div>
       <div className="w-full justify-center items-center h-5/6">
-        <ProductsList filteredProd={filteredProd} products={products} />
+        <ProductsList filteredProd={filteredProd} />
       </div>
     </div>
   );
