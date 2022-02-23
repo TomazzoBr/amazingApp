@@ -3,7 +3,7 @@ import { ProductsInterface } from "../../interfaces/ProductsInterface";
 
 import ProductItem from "./ProductItem.tsx/ProductItem";
 import Pagination from "./Pagination/Pagination";
-import SortBar from "../SortBar/SortBar";
+import SortBar from "./SortBar/SortBar";
 import store from "../../store/store";
 import FavouriteModal from "./FavouritesModal/FavouriteModal";
 
