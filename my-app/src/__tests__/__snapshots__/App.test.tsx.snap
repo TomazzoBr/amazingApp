@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<App /> should display the initial status of the app, with random products in the list 1`] = `
+exports[`<App /> should display the initial status of the app, wrapped inside the provider and with the redux store 1`] = `
 <div
   className="w-screen h-screen"
 >
