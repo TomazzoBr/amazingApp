@@ -47,6 +47,10 @@ Amazing app for Wallapop Frontend Test 💻
 4. Run `npm run start` to initialize the application.
 5. Open `http://localhost:3000` to visualize this amazing app!
 
+To run the tests:
+
+Run `npm run test` from the root folder.
+
 ## Developed by
 
 - [TomazzoBr](https://github.com/TomazzoBr)
