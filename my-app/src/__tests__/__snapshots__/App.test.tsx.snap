@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should display the initial status of the app, with random products in the list 1`] = `
+<div
+  className="w-screen h-screen"
+>
+  <div
+    className="w-full flex h-14 p-1"
+  >
+    <div
+      className="flex w-full h-full justify-between items-center bg-backgreen rounded-md"
+    >
+      <div
+        className="p-2"
+      >
+        <img
+          alt="Wallapop logo"
+        />
+      </div>
+      <div
+        className="w-2/3 ml-4"
+      >
+        <form
+          className="flex justify-between"
+          onChange={[Function]}
+        >
+          <input
+            className="w-full bg-grey border-1 rounded p-1"
+            onChange={[Function]}
+            placeholder="Check our amazing selection of products"
+            type="text"
+            value=""
+          />
+          <button
+            className="w-16 ml-2 bg-popcolor rounded-md opacity-80 hover:opacity-100 hover:shadow-md"
+          >
+            Pop!
+          </button>
+        </form>
+      </div>
+      <button
+        className="flex h-3/4 items-center mr-4 bg-favback rounded-md p-2 opacity-90 hover:opacity-100 hover:shadow-md"
+        onClick={[Function]}
+      >
+        Favourites
+      </button>
+    </div>
+  </div>
+  <div
+    className="w-full justify-center items-center h-5/6"
+  >
+    <div
+      className="w-full h-full flex flex-wrap justify-center"
+    >
+      <div
+        className="w-3/4 h-12 flex justify-around items-center bg-backgreen mt-2 rounded-md"
+      >
+        <div
+          className="w-1/2"
+        >
+          <form
+            className="flex flex-row justify-center items-center"
+          >
+            <label
+              className="bg-white p-1 rounded-md shadow-sm"
+              htmlFor="products-select"
+            >
+              Sort by:
+            </label>
+            <select
+              className="w-1/3 h-1/3 ml-2 rounded-md shadow-md px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+              onChange={[Function]}
+            >
+              <option
+                value="none"
+              >
+                No filter
+              </option>
+              <option
+                value="title"
+              >
+                Title
+              </option>
+              <option
+                value="description"
+              >
+                Description
+              </option>
+              <option
+                value="price"
+              >
+                Price
+              </option>
+              <option
+                value="email"
+              >
+                E-mail
+              </option>
+            </select>
+          </form>
+        </div>
+        <div
+          className="flex items-center"
+        >
+          <button
+            className="bg-white mr-2 rounded-xl p-1 shadow-md hover:shadow-none"
+            disabled={true}
+            onClick={[Function]}
+          >
+            ←
+          </button>
+          <span
+            className="bg-white rounded-md p-1 shadow-md"
+          >
+            Page 
+            1
+             of 
+            1
+          </span>
+          <button
+            className="bg-white ml-2 rounded-xl p-1 shadow-md hover:shadow-none"
+            disabled={true}
+            onClick={[Function]}
+          >
+            →
+          </button>
+        </div>
+      </div>
+      <div
+        className="relative w-full h-full flex flex-wrap justify-center"
+      >
+        <div
+          className="flex w-full h-full p-3"
+        >
+          <ul
+            className="w-screen flex p-4 justify-center bg-backblue rounded-md"
+          >
+            <li
+              className="flex items-center"
+            >
+              <strong>
+                No products available :(
+              </strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

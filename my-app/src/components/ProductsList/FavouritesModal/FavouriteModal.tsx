@@ -2,7 +2,6 @@ import React, { FormEvent, Key, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Star, StarFill } from "react-bootstrap-icons";
 import { ProductsInterface } from "../../../interfaces/ProductsInterface";
-import store from "../../../store/store";
 
 interface Props {
   favListModal: ProductsInterface[];
