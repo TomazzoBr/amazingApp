@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { Dispatch, useEffect, useState } from "react";
 import Header from "./components/Header/Header";
 import ProductsList from "./components/ProductsList/ProductsList";
 import { ProductsInterface } from "./interfaces/ProductsInterface";
 import { getProducts } from "./services/ApiClient";
+import { connect } from "react-redux";
 
 function App() {
   const [products, setProducts] = useState<ProductsInterface[]>([]);
@@ -18,7 +19,7 @@ function App() {
       }
       setProducts(products);
     });
-  });
+  }, [mount]);
 
   return (
     <div className="w-screen h-screen">
@@ -32,4 +33,22 @@ function App() {
   );
 }
 
-export default App;
+function mapDispatchToProps(dispatch: Dispatch<any>) {
+  return {
+    toggleFavouriteModalReducer: () =>
+      dispatch({ type: "header/toggleFavouriteModal" }),
+    toggleFilterReducer: () => dispatch({ type: "products/toggleFilter" }),
+  };
+}
+
+function mapStateToProps(
+  state: any,
+  ownProps: { value: string; flag: boolean }
+) {
+  return {
+    value: ownProps.value,
+    flag: ownProps.flag,
+  };
+}
+
+export default connect(mapDispatchToProps, mapStateToProps)(App);
