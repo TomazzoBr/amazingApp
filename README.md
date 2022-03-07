@@ -32,6 +32,12 @@ Amazing app for Wallapop Frontend Test 💻
 <p align="center">
  - Tailwind brings an easy way to deal with styling in bigger applications, I've been using it a lot and I enjoy a lot.
 </p>
+<p align="center">
+<img align="center" src="https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white" />
+</p>
+<p align="center">
+ - Used ts-jest for the tests of the application.
+</p>
 
 ## Quick start
 
@@ -40,6 +46,10 @@ Amazing app for Wallapop Frontend Test 💻
 3. Run `npm install` to install all the dependencies.
 4. Run `npm run start` to initialize the application.
 5. Open `http://localhost:3000` to visualize this amazing app!
+
+To run the tests:
+
+Run `npm run test` from the root folder.
 
 ## Developed by
 
