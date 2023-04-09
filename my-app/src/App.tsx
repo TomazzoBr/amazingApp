@@ -42,7 +42,7 @@ function mapDispatchToProps(dispatch: Dispatch<any>) {
 }
 
 function mapStateToProps(
-  state: any,
+  _state: any,
   ownProps: { value: string; flag: boolean }
 ) {
   return {
